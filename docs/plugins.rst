@@ -57,7 +57,7 @@ looks like:
 .. code:: python
 
     class AirflowPlugin(object):
-        # The name of your plugin (str)
+        # The name of your plugin (str). It will be used for module importing
         name = None
         # A list of class(es) derived from BaseOperator
         operators = []
@@ -142,3 +142,14 @@ definitions in Airflow.
         admin_views = [v]
         flask_blueprints = [bp]
         menu_links = [ml]
+
+
+After defining the Plugin you can then import it on any dag like this:
+
+
+.. code:: python
+
+    from airflow.hooks.test_plugin import PluginHook
+    from airflow.operators.test_plugin import PluginOperator
+
+
